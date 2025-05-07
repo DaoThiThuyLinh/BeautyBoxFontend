@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --font-display: 'Montserrat', sans-serif;
+  --color-primary: #ab2328;
+  --color-primary-light: #b0100f;
+  --color-secondary: #a9a9a9;
+  --color-shadow: rgb(234, 199, 200);
+  --color-bg-warning: #f8b51d;
+  --border-primary: #eaecf0;
+  --color-content: #fff;
+  --color-icon-hover: #000000bf;
+  --color-bg-gradient: linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%);
+  --color-bg-gradient-disable: linear-gradient(90deg, #ffcc00 0%, #9933cc 100%);
+  --color-text-primary: #0a0b0d;
+  --color-text-error: #d10000;
+  --color-primary-dashboard: #ff8201;
+  --color-primary-dashboard-light: #ffebd6;
+  --color-dashboard-bg: #e6dacc;
+  --color-dashboard-bg-light: #fafafa;
+  --color-border-input: #d0d5dd;
+}
+
+body {
+  font-family: var(--font-display);
+  color: var(--color-text-primary);
+}
+
+::selection {
+  color: var(--color-primary);
+  background: var(--color-bg-search-input);
+}
+.container {
+  box-sizing: content-box;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1366px;
+  position: relative;
+  width: 90%;
+}

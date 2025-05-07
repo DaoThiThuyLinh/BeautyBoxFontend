@@ -1,0 +1,198 @@
+$max-indent: 9;
+$indent-step: 3em;
+.quill-editor-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.quill-editor {
+  height: 300px;
+  margin-bottom: 20px;
+}
+:deep(.ql-container) {
+  width: 100%;
+  border-radius: 0 0 8px 8px;
+}
+:deep(.el-form-item__content) {
+  border-radius: 8px;
+}
+:deep(.ql-toolbar) {
+  border-radius: 8px 8px 0 0;
+}
+/* Custom styles for color picker */
+:deep(.ql-color .ql-picker-options),
+:deep(.ql-background .ql-picker-options) {
+  padding: 3px 5px;
+  width: 152px;
+}
+
+:deep(.ql-editor.ql-blank::before) {
+  color: #a8abb2;
+  font-size: 14px;
+}
+
+:deep(.ql-color .ql-picker-item),
+:deep(.ql-background .ql-picker-item) {
+  border: 1px solid transparent;
+  float: left;
+  height: 16px;
+  margin: 2px;
+  padding: 0px;
+  width: 16px;
+}
+
+.dialog-add-or-edit-product {
+  .popup-content {
+    div {
+      blockquote {
+        margin-top: 1em !important;
+        margin-bottom: 1em !important;
+        margin-left: 40px !important;
+        margin-right: 40px !important;
+      }
+      .ql-syntax {
+        background-color: #23241f;
+        color: #f8f8f2;
+        overflow: visible;
+        border-radius: 3px;
+        white-space: pre-wrap;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        padding: 5px 10px;
+      }
+      h1 {
+        font-size: 2em !important;
+        font-weight: bold !important;
+      }
+      h2 {
+        font-size: 1.5em !important;
+        font-weight: bold !important;
+      }
+      h3 {
+        font-size: 1.17em !important;
+        font-weight: bold !important;
+      }
+      h4 {
+        font-size: 1em !important;
+        font-weight: bold !important;
+      }
+      h5 {
+        font-size: 0.83em !important;
+        font-weight: bold !important;
+      }
+      h6 {
+        font-size: 0.67em !important;
+        font-weight: bold !important;
+      }
+      /* ol {
+        list-style-type: decimal;
+        list-style: none;
+        li {
+          counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+          counter-increment: list-0;
+
+          padding-left: 1.5em;
+          &::before {
+            margin-left: -1.5em;
+            margin-right: 0.3em;
+            text-align: right;
+            content: counter(list-0, decimal) '. ';
+            display: inline-block;
+            white-space: nowrap;
+            width: 1.2em;
+          }
+        }
+      }
+      ul {
+        list-style: none;
+        padding-left: 1.5em;
+        li {
+          padding-left: 1.5em;
+          &::before {
+            content: '\2022';
+            margin-left: -1.5em;
+            margin-right: 0.3em;
+            text-align: right;
+            display: inline-block;
+            white-space: nowrap;
+            width: 1.2em;
+          }
+        }
+      } */
+
+      .ql-align-right {
+        text-align: right;
+      }
+      .ql-size-small {
+        font-size: 0.75em;
+      }
+      .ql-size-large {
+        font-size: 1.5em;
+      }
+      .ql-size-huge {
+        font-size: 2.5em;
+      }
+      .ql-align-center {
+        text-align: center;
+      }
+      .ql-align-right {
+        text-align: right;
+      }
+      .ql-align-justify {
+        text-align: justify;
+      }
+      .ql-video {
+        display: block;
+        max-width: 100%;
+      }
+      .ql-video.ql-align-center {
+        margin: 0 auto;
+      }
+      .ql-video.ql-align-right {
+        margin: 0 0 0 auto;
+      }
+      .ql-direction-rtl {
+        direction: rtl;
+        text-align: inherit;
+      }
+      .ql-align-right {
+        text-align: right;
+      }
+      li::before {
+        display: inline-block;
+        white-space: nowrap;
+        width: 1.2em;
+      }
+      ul > li::before {
+        content: '\2022';
+      }
+      li.ql-direction-rtl::before {
+        margin-left: 0.3em;
+        margin-right: -1.5em;
+      }
+      ol li.ql-direction-rtl,
+      ul li.ql-direction-rtl {
+        padding-right: 1.5em;
+      }
+      ol li:before {
+        content: counter(list-0, decimal) '. ';
+      }
+      ol li {
+        counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+        counter-increment: list-0;
+      }
+
+      @for $i from 1 through $max-indent {
+        .ql-indent-#{$i}.ql-direction-rtl.ql-align-right {
+          padding-right: $indent-step * $i;
+        }
+      }
+      @for $i from 1 through $max-indent {
+        .ql-indent-#{$i} {
+          padding-left: $indent-step * $i;
+        }
+      }
+    }
+  }
+}

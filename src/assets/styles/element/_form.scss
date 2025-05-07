@@ -1,0 +1,28 @@
+.el-form {
+  .el-form-item {
+    .el-form-item__label {
+      color: var(--color-text-primary);
+      font-size: 16px;
+    }
+  }
+}
+
+.el-input {
+  --el-disabled-text-color: #0a0b0d;
+  height: 40px;
+  .el-input__wrapper {
+    border-radius: 8px;
+    height: 40px;
+    .el-select__selection {
+      .el-select__placeholder {
+        color: #0a0b0d;
+      }
+      .el-select__placeholder.is-transparent {
+        color: #a8abb2;
+      }
+    }
+    .el-input__inner {
+      color: #0a0b0d;
+    }
+  }
+}

@@ -1,0 +1,126 @@
+@use './element';
+@use './quill';
+
+/* NProgress custom color */
+#nprogress .bar {
+  background: #ff8201 !important; /* Change this color to your desired theme color */
+}
+
+#nprogress .peg {
+  box-shadow:
+    0 0 10px #ff8201,
+    0 0 5px #ff8201 !important;
+}
+
+.eZooTa {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+  .tag {
+    display: inline-block;
+    height: 20px;
+    width: auto;
+    background-color: var(--color-text-error);
+    border-radius: 3px 4px 4px 3px;
+    border-left: 1px solid var(--color-text-error);
+    margin-left: 19px;
+    position: relative;
+    color: var(--color-text-error);
+    font-weight: 700;
+    font-size: 12px;
+    padding: 0px 5px;
+    &:before {
+      content: '';
+      position: absolute;
+      transform-origin: left top;
+      transform: rotate(45deg);
+      background: var(--color-text-error);
+      top: -1px;
+      left: 1px;
+      height: 15px;
+      width: 15px;
+      color: white;
+      border-radius: 3px;
+    }
+  }
+  .price {
+    font-weight: 700;
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    right: 8px;
+  }
+}
+
+.con-hang,
+.dang-giao-hang {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 0 12px;
+  height: 24px;
+  font-size: 12px;
+  color: #129961;
+  border-radius: 4px;
+  background-color: #e4f9e2;
+}
+
+.het-hang,
+.da-huy-don,
+.khong-nhan-hang {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 0 12px;
+  height: 24px;
+  font-size: 12px;
+  color: #cf202f;
+  border-radius: 4px;
+  background-color: #fbedee;
+}
+
+.cho-xac-nhan,
+.dang-chuan-bi-hang,
+.cho-thanh-toan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 0 12px;
+  height: 24px;
+  font-size: 12px;
+  color: #ff9e0c;
+  border-radius: 4px;
+  background-color: #fff3e2;
+}
+
+.da-nhan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  width: fit-content;
+  padding: 0 12px;
+  font-size: 12px;
+  color: #175cd3;
+  border-radius: 4px;
+  background-color: #eff8ff;
+}
+
+.khong-xac-dinh {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 0 12px;
+  height: 24px;
+  font-size: 12px;
+  color: #5b616e;
+  border-radius: 4px;
+  background-color: #f3f2f1;
+}
