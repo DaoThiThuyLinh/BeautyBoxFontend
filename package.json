@@ -18,7 +18,7 @@
     "@vueuse/core": "^13.1.0",
     "apexcharts": "^4.7.0",
     "axios": "^1.8.4",
-    "element-plus": "^2.9.7",
+    "element-plus": "^2.9.10",
     "js-cookie": "^3.0.5",
     "nprogress": "^0.2.0",
     "pinia": "^2.3.1",
