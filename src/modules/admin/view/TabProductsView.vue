@@ -83,6 +83,9 @@
   const getListProducts = async () => {
     isLoading.value = true
     try {
+      if (query.value.orderBy === '4') {
+        query.value.sortDirection = 'desc'
+      }
       const rs = await apiAdmin.getListProducts(query.value)
       listProducts.value = rs.data.content
       query.value.total = rs.data.totalElements

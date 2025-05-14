@@ -21,8 +21,12 @@
       </ElFormItem>
     </ElForm>
 
-    <div v-if="step === 2" class="flex items-center justify-center">
+    <div v-if="step === 2" class="flex flex-col items-center justify-center space-y-4">
       <OtpInput @complete="handleOtpComplete" />
+      <p v-if="!remainingSeconds" class="cursor-pointer text-[#0151fc] underline" @click="resendOtp">Gửi lại mã xác thực</p>
+      <span class="countdown-time text-base font-medium" :class="{ 'text-[var(--color-text-error)]': isAlmostExpired }">
+        {{ formattedTime }}
+      </span>
     </div>
     <ElForm
       v-if="step === 3"
@@ -62,7 +66,10 @@
     login: []
   }>()
 
+  const remainingSeconds = ref(90)
+  let intervalId: number | null = null
   const isLoading = ref(false)
+
   const refFormInputEmail = ref<FormInstance | null>(null)
   const refFormChangePassword = ref<FormInstance | null>(null)
   const step = ref(1)
@@ -104,6 +111,26 @@
       }
     ]
   }
+  const isAlmostExpired = computed(() => {
+    return remainingSeconds.value <= 10
+  })
+
+  const formattedTime = computed(() => {
+    const minutes = Math.floor(remainingSeconds.value / 60)
+    const seconds = remainingSeconds.value % 60
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+  })
+
+  // Start the timer interval
+  const startTimer = () => {
+    if (intervalId !== null) return
+
+    intervalId = window.setInterval(() => {
+      if (remainingSeconds.value > 0) {
+        remainingSeconds.value--
+      }
+    }, 1000)
+  }
 
   const handleForgotPassword = async () => {
     if (step.value === 1) {
@@ -125,10 +152,26 @@
         type: 'success'
       })
       step.value = 2
+      startTimer()
     } catch (error) {
       console.error(error)
     }
     isLoading.value = false
+  }
+
+  const resendOtp = async () => {
+    try {
+      await apiAuth.getOtp(emailInput.value)
+      ElNotification({
+        title: 'Success',
+        message: 'Đã gửi mã xác thực đến email của bạn',
+        type: 'success'
+      })
+      remainingSeconds.value = 90
+      startTimer()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const handleOtpComplete = async (otp: string) => {

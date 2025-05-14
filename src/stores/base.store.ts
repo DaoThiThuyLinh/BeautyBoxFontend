@@ -75,6 +75,9 @@ export const useBaseStore = defineStore('base', () => {
   const getListProducts = async () => {
     isGetListProducts.value = true
     try {
+      if (queryProduct.value.orderBy === '4') {
+        queryProduct.value.sortDirection = 'desc'
+      }
       const rs = await apiAdmin.getListProducts(queryProduct.value)
       listProducts.value = rs.data.content
       queryProduct.value.total = rs.data.totalElements

@@ -10,6 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     BaseButton: typeof import('./src/components/base/button/BaseButton.vue')['default']
     BaseCollapse: typeof import('./src/components/base/collapse/BaseCollapse.vue')['default']
+    BaseCountDown: typeof import('./src/components/base/count-down/BaseCountDown.vue')['default']
     BaseDialog: typeof import('./src/components/base/dialog/BaseDialog.vue')['default']
     BaseDrawer: typeof import('./src/components/base/drawer/BaseDrawer.vue')['default']
     BaseEmpty: typeof import('./src/components/base/empty/BaseEmpty.vue')['default']

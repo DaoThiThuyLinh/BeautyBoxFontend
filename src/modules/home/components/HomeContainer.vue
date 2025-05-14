@@ -25,13 +25,13 @@
     </div>
     <div v-if="isDesktop" class="flex flex-col gap-3.5">
       <img
-        src="https://image.hsv-tech.io/1920x0/bbx/common/e5212597-0aaa-4d68-9d30-55b0346698f2.webp"
+        src="https://image.hsv-tech.io/1920x0/bbx/common/a554ba5d-c878-4dce-a94f-d89ea66b9ca3.webp"
         alt=""
         class="rounded-xl"
         loading="lazy"
       />
       <img
-        src="https://image.hsv-tech.io/1920x0/bbx/common/d9719776-39d9-44d4-9a3c-98168a574ba1.webp"
+        src="https://image.hsv-tech.io/1920x0/bbx/common/c10cf785-2185-4e9d-ad52-b0733db22020.webp"
         alt=""
         class="rounded-xl"
         loading="lazy"

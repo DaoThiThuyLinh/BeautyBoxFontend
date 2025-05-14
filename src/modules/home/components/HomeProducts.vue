@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <BaseLoadingCard
-      v-if="isGetListProducts"
+      v-if="isLoading"
       :number-card-loading="isDesktop ? 5 : 2"
       :grid-class="isDesktop ? 'grid-cols-5' : 'grid-cols-2'"
     />
-    <BaseEmpty v-else-if="listProducts.length === 0" />
+    <BaseEmpty v-else-if="products.length === 0" />
     <div v-else-if="isDesktop" class="grid grid-cols-5 gap-6 max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2">
       <div
-        v-for="(item, index) in listProducts"
+        v-for="(item, index) in products"
         :key="item.id"
         class="fade-in transform cursor-pointer space-y-1 rounded-lg bg-[#fafafa] p-4 transition duration-500 hover:scale-105 hover:bg-[#ffebd6]"
         :style="{ animationDelay: `${index * 200}ms` }"
@@ -71,7 +71,7 @@
         class="mySwiper my-swiper-mb"
       >
         <SwiperSlide
-          v-for="(item, index) in listProducts"
+          v-for="(item, index) in products"
           :key="item.id"
           class="fade-in transform cursor-pointer space-y-1 rounded-lg bg-[#fafafa] p-4 transition duration-500 hover:scale-105 hover:bg-[#ffebd6]"
           :style="{ animationDelay: `${index * 200}ms` }"
@@ -126,7 +126,7 @@
       </Swiper>
     </template>
   </div>
-  <div class="mt-10 flex justify-center">
+  <div v-if="type !== 'bestseller'" class="mt-10 flex justify-center">
     <ElPagination
       layout="prev, pager, next"
       :current-page="queryProduct.pageIndex"
@@ -163,7 +163,13 @@
 
   const hoveredItem = ref<string | null>(null)
 
-  const { isGetListProducts, listProducts, isDesktop, queryProduct } = storeToRefs(useBaseStore())
+  const { isLoading, products, type } = defineProps<{
+    isLoading: boolean
+    products: IProductParent[]
+    type?: 'bestseller'
+  }>()
+
+  const { isDesktop, queryProduct } = storeToRefs(useBaseStore())
   const { getListProducts } = useBaseStore()
   const emit = defineEmits<{
     'view-product-info': [product: IProductParent]

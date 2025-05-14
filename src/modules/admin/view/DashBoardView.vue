@@ -2,21 +2,34 @@
   <div class="space-y-6">
     <DashboardSummary :summaries="dataSummary" :is-loading="isLoading" />
     <div class="rounded-lg bg-[var(--color-dashboard-bg-light)] p-4">
-      <div class="flex items-center justify-between max-sm:block">
+      <!-- Revenue -->
+      <div class="mb-4 flex items-center justify-between max-sm:block">
         <h2 class="text-2xl font-semibold max-sm:mb-4 max-sm:text-base">Thống kê doanh thu</h2>
-        <div class="w-[500px] max-sm:hidden max-sm:w-full">
-          <ElDatePicker
-            v-model="datePickerRevenue"
-            type="daterange"
-            unlink-panels
-            range-separator="To"
-            start-placeholder="From date"
-            end-placeholder="To date"
-            :shortcuts="shortcuts"
-            class="date-picker !w-full"
+        <div class="flex items-center justify-end space-x-4 max-sm:hidden max-sm:w-full">
+          <BaseSelect
+            v-model="chartRevenueViewMode"
+            placeholder="Biều đồ theo"
+            teleported
+            class="w-44"
             @change="getChartRevenueData"
-          />
+          >
+            <ElOption v-for="item in CHART_VIEW_MODE" :key="item.value" :label="item.label" :value="item.value" />
+          </BaseSelect>
+          <div class="w-[500px]">
+            <ElDatePicker
+              v-model="datePickerRevenue"
+              type="daterange"
+              unlink-panels
+              range-separator="To"
+              start-placeholder="From date"
+              end-placeholder="To date"
+              :shortcuts="shortcuts"
+              class="date-picker !w-full"
+              @change="getChartRevenueData"
+            />
+          </div>
         </div>
+
         <div class="mb-6 hidden h-full w-full items-center justify-between max-sm:flex">
           <ElDatePicker
             v-model="datePickerRevenue[0]"
@@ -36,7 +49,17 @@
             @change="getChartRevenueData"
           />
         </div>
+        <BaseSelect
+          v-model="chartRevenueViewMode"
+          placeholder="Biều đồ theo"
+          teleported
+          class="hidden w-full max-sm:flex"
+          @change="getChartRevenueData"
+        >
+          <ElOption v-for="item in CHART_VIEW_MODE" :key="item.value" :label="item.label" :value="item.value" />
+        </BaseSelect>
       </div>
+
       <div id="chart" v-loading="isGetChartRevenue" class="min-h-[400px]">
         <ApexChart
           :options="getChartOptions(chartRevenue)"
@@ -46,21 +69,29 @@
         ></ApexChart>
       </div>
     </div>
+
+    <!-- Order -->
+
     <div class="rounded-lg bg-[var(--color-dashboard-bg-light)] p-4">
-      <div class="flex items-center justify-between max-sm:block">
+      <div class="mb-4 flex items-center justify-between max-sm:block">
         <h2 class="text-2xl font-semibold max-sm:mb-4 max-sm:text-base">Thống kê đơn hàng</h2>
-        <div class="w-[500px] max-sm:hidden max-sm:w-full">
-          <ElDatePicker
-            v-model="datePickerOrder"
-            type="daterange"
-            unlink-panels
-            range-separator="To"
-            start-placeholder="From date"
-            end-placeholder="To date"
-            :shortcuts="shortcuts"
-            class="date-picker !w-full"
-            @change="getDataChartOrder"
-          />
+        <div class="flex items-center justify-end space-x-4 max-sm:hidden max-sm:w-full">
+          <BaseSelect v-model="chartOrderViewMode" placeholder="Biều đồ theo" teleported class="w-44" @change="getDataChartOrder">
+            <ElOption v-for="item in CHART_VIEW_MODE" :key="item.value" :label="item.label" :value="item.value" />
+          </BaseSelect>
+          <div class="w-[500px]">
+            <ElDatePicker
+              v-model="datePickerOrder"
+              type="daterange"
+              unlink-panels
+              range-separator="To"
+              start-placeholder="From date"
+              end-placeholder="To date"
+              :shortcuts="shortcuts"
+              class="date-picker !w-full"
+              @change="getDataChartOrder"
+            />
+          </div>
         </div>
         <div class="mb-6 hidden h-full w-full items-center justify-between max-sm:flex">
           <ElDatePicker
@@ -81,6 +112,15 @@
             @change="getDataChartOrder"
           />
         </div>
+        <BaseSelect
+          v-model="chartOrderViewMode"
+          placeholder="Biều đồ theo"
+          teleported
+          class="hidden w-full max-sm:flex"
+          @change="getDataChartOrder"
+        >
+          <ElOption v-for="item in CHART_VIEW_MODE" :key="item.value" :label="item.label" :value="item.value" />
+        </BaseSelect>
       </div>
       <div id="chart" v-loading="isGetChartOrder" class="min-h-[400px]">
         <ApexChart
@@ -91,11 +131,79 @@
         ></ApexChart>
       </div>
     </div>
+
+    <!-- Profit -->
+
+    <div class="rounded-lg bg-[var(--color-dashboard-bg-light)] p-4">
+      <div class="mb-4 flex items-center justify-between max-sm:block">
+        <h2 class="text-2xl font-semibold max-sm:mb-4 max-sm:text-base">Thống kê lợi nhuận</h2>
+        <div class="flex items-center justify-end space-x-4 max-sm:hidden max-sm:w-full">
+          <BaseSelect
+            v-model="chartProfitViewMode"
+            placeholder="Biều đồ theo"
+            teleported
+            class="w-44"
+            @change="getDataChartProfit"
+          >
+            <ElOption v-for="item in CHART_VIEW_MODE" :key="item.value" :label="item.label" :value="item.value" />
+          </BaseSelect>
+          <div class="w-[500px]">
+            <ElDatePicker
+              v-model="datePickerProfit"
+              type="daterange"
+              unlink-panels
+              range-separator="To"
+              start-placeholder="From date"
+              end-placeholder="To date"
+              :shortcuts="shortcuts"
+              class="date-picker !w-full"
+              @change="getDataChartProfit"
+            />
+          </div>
+        </div>
+        <div class="mb-6 hidden h-full w-full items-center justify-between max-sm:flex">
+          <ElDatePicker
+            v-model="datePickerProfit[0]"
+            type="date"
+            placeholder="From date"
+            class="filter-date h-full flex-1"
+            :disabled-date="(time: string) => disableDatePicker(time, 'FROM', datePickerProfit[1])"
+            @change="getDataChartProfit"
+          />
+          <span class="mx-3 text-[#DBDBDB]">-</span>
+          <ElDatePicker
+            v-model="datePickerProfit[1]"
+            type="date"
+            placeholder="To date"
+            class="filter-date h-full flex-1"
+            :disabled-date="(time: string) => disableDatePicker(time, 'TO', datePickerProfit[0])"
+            @change="getDataChartProfit"
+          />
+        </div>
+        <BaseSelect
+          v-model="chartProfitViewMode"
+          placeholder="Biều đồ theo"
+          teleported
+          class="hidden w-full max-sm:flex"
+          @change="getDataChartProfit"
+        >
+          <ElOption v-for="item in CHART_VIEW_MODE" :key="item.value" :label="item.label" :value="item.value" />
+        </BaseSelect>
+      </div>
+      <div id="chart" v-loading="isGetChartProfit" class="min-h-[400px]">
+        <ApexChart
+          :options="getChartOptions(chartProfit)"
+          type="line"
+          height="400"
+          :series="getChartSeries(chartProfit, 'Lợi nhuận')"
+        ></ApexChart>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { ONE_MONTH_MS, ONE_WEEK_MS, ONE_YEAR_MS } from '@/constant'
+  import { CHART_VIEW_MODE } from '@/constant'
   import { apiAdmin } from '@/services'
   import { ElDatePicker } from 'element-plus'
   import { computed, onMounted, ref } from 'vue'
@@ -112,13 +220,20 @@
   const isLoading = ref(false)
   const isGetChartRevenue = ref(false)
   const isGetChartOrder = ref(false)
+  const isGetChartProfit = ref(false)
   const valueSummaries = ref<IValueSummary>({} as IValueSummary)
   const chartRevenue = ref<IChart[]>([])
   const chartOrder = ref<IChart[]>([])
+  const chartProfit = ref<IChart[]>([])
   const datePickerRevenue = ref<[Date, Date]>(getThisWeekRange())
   const datePickerOrder = ref<[Date, Date]>(getThisWeekRange())
+  const datePickerProfit = ref<[Date, Date]>(getThisWeekRange())
+  const chartRevenueViewMode = ref('1')
+  const chartOrderViewMode = ref('1')
+  const chartProfitViewMode = ref('1')
+
   onMounted(() => {
-    Promise.all([getSummariesDashbord(), getChartRevenueData(), getDataChartOrder()])
+    Promise.all([getSummariesDashbord(), getChartRevenueData(), getDataChartOrder(), getDataChartProfit()])
   })
   const shortcuts = [
     {
@@ -294,11 +409,11 @@
   const getChartRevenueData = async () => {
     isGetChartRevenue.value = true
     try {
-      const duration = (datePickerRevenue.value[1]?.getTime?.() ?? 0) - (datePickerRevenue.value[0]?.getTime?.() ?? 0)
-      const groupTime = duration > ONE_YEAR_MS ? '5' : duration > ONE_MONTH_MS ? '3' : duration > ONE_WEEK_MS ? '2' : '1'
+      // const duration = (datePickerRevenue.value[1]?.getTime?.() ?? 0) - (datePickerRevenue.value[0]?.getTime?.() ?? 0)
+      // const groupTime = duration > ONE_YEAR_MS ? '5' : duration > ONE_MONTH_MS ? '3' : duration > ONE_WEEK_MS ? '2' : '1'
       const _paramas = {
-        groupTime,
-        fromDate: convertUTCTime(datePickerRevenue.value[0], 'FROM'),
+        groupTime: chartRevenueViewMode.value,
+        fromDate: convertUTCTime(datePickerRevenue.value[0], 'TO'),
         toDate: convertUTCTime(datePickerRevenue.value[1], 'TO')
       }
 
@@ -313,11 +428,11 @@
   const getDataChartOrder = async () => {
     isGetChartOrder.value = true
     try {
-      const duration = (datePickerOrder.value[1]?.getTime?.() ?? 0) - (datePickerOrder.value[0]?.getTime?.() ?? 0)
-      const groupTime = duration > ONE_YEAR_MS ? '5' : duration > ONE_MONTH_MS ? '3' : duration > ONE_WEEK_MS ? '2' : '1'
+      // const duration = (datePickerOrder.value[1]?.getTime?.() ?? 0) - (datePickerOrder.value[0]?.getTime?.() ?? 0)
+      // const groupTime = duration > ONE_YEAR_MS ? '5' : duration > ONE_MONTH_MS ? '3' : duration > ONE_WEEK_MS ? '2' : '1'
       const _paramas = {
-        groupTime,
-        fromDate: convertUTCTime(datePickerOrder.value[0], 'FROM'),
+        groupTime: chartOrderViewMode.value,
+        fromDate: convertUTCTime(datePickerOrder.value[0], 'TO'),
         toDate: convertUTCTime(datePickerOrder.value[1], 'TO')
       }
 
@@ -329,6 +444,24 @@
     isGetChartOrder.value = false
   }
 
+  const getDataChartProfit = async () => {
+    isGetChartProfit.value = true
+    try {
+      // const duration = (datePickerProfit.value[1]?.getTime?.() ?? 0) - (datePickerProfit.value[0]?.getTime?.() ?? 0)
+      // const groupTime = duration > ONE_YEAR_MS ? '5' : duration > ONE_MONTH_MS ? '3' : duration > ONE_WEEK_MS ? '2' : '1'
+      const _paramas = {
+        groupTime: chartProfitViewMode.value,
+        fromDate: convertUTCTime(datePickerProfit.value[0], 'TO'),
+        toDate: convertUTCTime(datePickerProfit.value[1], 'TO')
+      }
+
+      const { data } = await apiAdmin.getDataChartProfit(_paramas)
+      chartProfit.value = data
+    } catch (error) {
+      console.log(error)
+    }
+    isGetChartProfit.value = false
+  }
   const getChartSeries = (chartData: IChart[], seriesName: string) => {
     return [
       {

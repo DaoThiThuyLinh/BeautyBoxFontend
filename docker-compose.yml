@@ -59,6 +59,7 @@ services:
       REDIS_PORT: 6379
       PASSWORD: root_admin
       ELASTIC_HOSTS: elasticsearch:9200
+      WEB_URL: https://beauty-box-test.vercel.app
 volumes:
   redis_data:
   mysql_data:

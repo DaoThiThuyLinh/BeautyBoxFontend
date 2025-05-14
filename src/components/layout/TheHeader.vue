@@ -36,6 +36,7 @@
             placement="bottom"
             :width="400"
             trigger="click"
+            trigger-keys="['Enter']"
             :popper-style="{ color: '#000', borderRadius: '8px', padding: 0 }"
           >
             <template #reference>

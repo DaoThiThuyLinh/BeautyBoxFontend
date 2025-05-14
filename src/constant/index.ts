@@ -86,23 +86,23 @@ export const DEFAULT_QUERY_PAGINATION = {
 export const ORDER_BY_PRODUCT = [
   {
     label: 'Thời gian tạo',
-    value: 1
+    value: '1'
   },
   {
     label: 'Giá sản phẩm',
-    value: 2
+    value: '2'
   },
   {
     label: 'Tên',
-    value: 3
+    value: '3'
   },
   {
     label: 'Số lượt mua',
-    value: 4
+    value: '4'
   },
   {
     label: 'Lượt đánh giá',
-    value: 5
+    value: '5'
   }
 ]
 
@@ -175,3 +175,26 @@ export const ORDER_BY_USER = [
 export const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000
 export const ONE_MONTH_MS = 30 * 24 * 60 * 60 * 1000
 export const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000
+
+export const CHART_VIEW_MODE = [
+  {
+    label: 'Theo ngày',
+    value: '1'
+  },
+  {
+    label: 'Theo tuần',
+    value: '2'
+  },
+  {
+    label: 'Theo tháng',
+    value: '3'
+  },
+  {
+    label: '5 tháng',
+    value: '4'
+  },
+  {
+    label: 'Theo năm',
+    value: '5'
+  }
+]

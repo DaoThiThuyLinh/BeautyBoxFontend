@@ -218,4 +218,13 @@ export default class AdminService {
       return Promise.reject(error)
     }
   }
+
+  async getDataChartProfit(params: Record<string, string>): Promise<IResponse<IChart[]>> {
+    try {
+      const rs = await request.get(`${this.prefix}/profit-by-time`, { params: formatParams(params) })
+      return Promise.resolve(rs.data)
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  }
 }

@@ -442,7 +442,7 @@
     try {
       const _params = {
         ...query.value,
-        fromDate: datePicker.value ? convertUTCTime(datePicker.value[0], 'FROM') : '',
+        fromDate: datePicker.value ? convertUTCTime(datePicker.value[0], 'TO') : '',
         toDate: datePicker.value ? convertUTCTime(datePicker.value[1], 'TO') : ''
       }
       const { data } = await apiOrder.getOrder(_params)

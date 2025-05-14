@@ -41,6 +41,7 @@
       </p>
     </div>
   </BaseDialog>
+
   <DialogForgotPassword @login="setOpenDialog('dialog-login')" />
 </template>
 

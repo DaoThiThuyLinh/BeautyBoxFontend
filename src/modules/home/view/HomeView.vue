@@ -9,17 +9,25 @@
       v-model:price="price"
       @filter="handleFilter"
     />
-    <HomeProducts @view-product-info="handleViewProductInfo" />
+    <HomeProducts :is-loading="isGetListProducts" :products="listProducts" @view-product-info="handleViewProductInfo" />
+    <h1 class="text-center text-[26px] font-bold max-sm:text-lg">DANH SÁCH SẢN PHẨM BÁN CHẠY NHẤT</h1>
+    <HomeProducts
+      :is-loading="isGetListProductsBestseller"
+      :products="listProductsBestseller"
+      type="bestseller"
+      @view-product-info="handleViewProductInfo"
+    />
     <HomeBlogs :blogs :is-loading="isLoading" @change-tab="handleTabChange" />
   </div>
   <DialogProductInfo :product-info="productInfo" />
 </template>
 
 <script setup lang="ts">
-  import { apiHome } from '@/services'
+  import { DEFAULT_QUERY_PAGINATION } from '@/constant'
+  import { apiAdmin, apiHome } from '@/services'
 
   import type { IBlog } from '@/types/home.types'
-  import type { IProductParent } from '@/types/product.types'
+  import type { IParamsProduct, IProductParent } from '@/types/product.types'
 
   import { useBaseStore } from '@/stores/base.store'
 
@@ -30,7 +38,7 @@
   import HomeProducts from '../components/HomeProducts.vue'
 
   type tabValue = 'NEWS' | 'REVIEW' | 'SKIN' | 'EVENT' | 'HEALTH'
-  const { queryProduct, isDesktop } = storeToRefs(useBaseStore())
+  const { queryProduct, isDesktop, isGetListProducts, listProducts } = storeToRefs(useBaseStore())
 
   const { getListProducts, getListCategories, getListBrands, setOpenDialog } = useBaseStore()
   const router = useRouter()
@@ -41,6 +49,20 @@
   const blogs = ref<IBlog[]>([])
   const price = ref('')
   const imagesBanner = ref<any[]>([])
+  const isGetListProductsBestseller = ref(false)
+  const listProductsBestseller = ref<IProductParent[]>([])
+  const queryProductBestseller = ref<IParamsProduct>({
+    ...DEFAULT_QUERY_PAGINATION,
+    pageSize: 5,
+    value: '',
+    category: '',
+    brand: '',
+    sortDirection: 'desc',
+    orderBy: '4',
+    minPrice: '',
+    maxPrice: ''
+  })
+
   const handleTabChange = (value: string) => {
     if (['NEWS', 'REVIEW', 'SKIN', 'EVENT', 'HEALTH'].includes(value)) {
       getBlogs(value as tabValue)
@@ -52,6 +74,7 @@
   onMounted(() =>
     Promise.all([
       getListProducts(),
+      getListProductsBestseller(),
       getListCategories(),
       getListBrands(),
       getBlogs('NEWS'),
@@ -140,6 +163,18 @@
     }
 
     isLoadingBanner.value = false
+  }
+
+  const getListProductsBestseller = async () => {
+    isGetListProductsBestseller.value = true
+    try {
+      const rs = await apiAdmin.getListProducts(queryProductBestseller.value)
+      listProductsBestseller.value = rs.data.content
+      queryProductBestseller.value.total = rs.data.totalElements
+    } catch (error) {
+      console.log(error)
+    }
+    isGetListProductsBestseller.value = false
   }
 </script>
 
