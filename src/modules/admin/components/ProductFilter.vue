@@ -8,7 +8,7 @@
       <BaseSelect v-model="brand" placeholder="Thương hiệu" teleported clearable class="w-44" @change="emit('filter')">
         <ElOption v-for="item in listBrands" :key="item.id" :label="item.name" :value="item.id" />
       </BaseSelect>
-      <BaseSelect v-model="orderBy" placeholder="Sắp xếp" teleported clearable class="w-44" @change="emit('filter')">
+      <BaseSelect v-model="orderBy" placeholder="Sắp xếp" teleported class="w-44" @change="emit('filter')">
         <ElOption v-for="item in ORDER_BY_PRODUCT" :key="item.value" :label="item.label" :value="item.value" />
       </BaseSelect>
       <BaseSelect v-model="price" placeholder="Giá" clearable teleported class="w-44" @change="emit('filter')">

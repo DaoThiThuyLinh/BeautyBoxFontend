@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-    <div class="border-t border-solid border-[#0000000F]"></div>
+    <!-- <div class="border-t border-solid border-[#0000000F]"></div>
     <div class="mt-10" :class="[isDesktop ? 'flex items-center justify-between' : 'space-y-6']">
       <p :class="isDesktop ? 'w-[500px]' : 'w-full'">
         ®beautybox.com.vn thuộc quyền sở hữu của Công ty CP TMDV Tổng Hợp Hoàn Vũ GPKD số 0309802418 cấp ngày 11/02/2010 tại Sở
@@ -63,7 +63,7 @@
           <img src="/images/momo-icon.png" alt="" loading="lazy" />
         </div>
       </div>
-    </div>
+    </div> -->
   </footer>
 </template>
 

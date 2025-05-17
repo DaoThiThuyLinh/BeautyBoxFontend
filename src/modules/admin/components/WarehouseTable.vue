@@ -10,7 +10,7 @@
     @row-click="emits('click-product', $event)"
   >
     <ElTableColumn label="#" type="index" :index="(i: number) => printIndex(i, query)" align="center" width="64" />
-    <ElTableColumn label="Mã" prop="id">
+    <ElTableColumn label="Mã" prop="id" width="120">
       <template #default="{ row }">
         <span class="text-sm">{{ row.id }}</span>
       </template>
@@ -18,7 +18,7 @@
     <ElTableColumn label="Tên" prop="name" />
     <ElTableColumn label="Thể loại" prop="categoryName" />
     <ElTableColumn label="Thương hiệu" prop="brandName" />
-    <ElTableColumn label="Số lượng đã bán" align="right">
+    <ElTableColumn label="Số lượng đã bán" align="right" width="220">
       <template #default="{ row }">
         <span class="text-sm">{{ formatNumber(row.totalSold) }}</span>
       </template>

@@ -60,6 +60,16 @@ services:
       PASSWORD: root_admin
       ELASTIC_HOSTS: elasticsearch:9200
       WEB_URL: https://beauty-box-test.vercel.app
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    platform: linux/arm64
+    depends_on:
+      - BeautyBox
+    ports:
+      - '5173:5173'
 volumes:
   redis_data:
   mysql_data:

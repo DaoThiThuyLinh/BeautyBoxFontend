@@ -46,6 +46,11 @@
           </p>
         </div>
         <div v-if="isDesktop" class="action-buttons-wrapper flex items-center justify-center space-x-3">
+          <BaseIcon
+            name="menu-warehouse"
+            class="cursor-pointer hover:text-[var(--color-primary-dashboard)]"
+            @click="linkToWarehouse(item)"
+          />
           <BaseIcon name="edit" class="cursor-pointer hover:text-[var(--color-primary-dashboard)]" @click="emits('edit', item)" />
           <BaseIcon
             name="trash"
@@ -54,6 +59,11 @@
           />
         </div>
         <div v-else class="action-buttons-wrapper-mb mt-6 flex items-center justify-center space-x-3">
+          <BaseIcon
+            name="menu-warehouse"
+            class="cursor-pointer hover:text-[var(--color-primary-dashboard)]"
+            @click="linkToWarehouse(item)"
+          />
           <BaseIcon name="edit" class="cursor-pointer hover:text-[var(--color-primary-dashboard)]" @click="emits('edit', item)" />
           <BaseIcon
             name="trash"
@@ -75,7 +85,7 @@
   import { useBaseStore } from '@/stores/base.store'
 
   const { isDesktop } = storeToRefs(useBaseStore())
-
+  const router = useRouter()
   const hoveredItem = ref<string | null>(null)
 
   const {
@@ -98,6 +108,13 @@
     edit: [product: IProductParent]
     delete: [product: IProductParent]
   }>()
+
+  const linkToWarehouse = (product: IProductParent) => {
+    router.push({
+      name: 'WarehouseProductDetail',
+      params: { productId: product.id }
+    })
+  }
 </script>
 
 <style scoped lang="scss">

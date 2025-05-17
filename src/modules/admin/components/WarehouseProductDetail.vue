@@ -102,7 +102,7 @@
       :show-pagination="false"
     >
       <ElTableColumn label="#" type="index" :index="(i: number) => printIndex(i, query)" align="center" width="64" />
-      <ElTableColumn label="Sản phẩm" prop="name" min-width="200">
+      <ElTableColumn label="Sản phẩm" prop="name" min-width="280">
         <template #default="{ row }">
           <div class="flex items-center gap-2">
             <img :src="row.image" alt="" class="h-10 w-10 rounded-lg" />

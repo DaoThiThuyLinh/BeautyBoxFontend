@@ -4,7 +4,7 @@
       <img
         src="/images/logo.png"
         alt=""
-        class="mb-6 h-10 cursor-pointer object-contain"
+        class="mb-6 h-16 cursor-pointer object-contain"
         loading="lazy"
         @click="router.replace({ name: 'Home' })"
       />
@@ -18,7 +18,7 @@
       >
         <div :class="{ 'active-link': isActive }" @click="navigate">
           <BaseIcon :name="item.icon" />
-          <span> {{ item.label }}</span>
+          <span>{{ item.label }}</span>
         </div>
       </RouterLink>
     </div>

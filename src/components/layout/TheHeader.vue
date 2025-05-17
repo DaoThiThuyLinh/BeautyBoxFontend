@@ -13,7 +13,7 @@
     </div>
     <div class="container flex h-20 items-center justify-center">
       <div class="flex w-full items-center justify-between py-4">
-        <img src="/images/logo.png" alt="" class="h-10 cursor-pointer" loading="lazy" @click="router.replace({ name: 'Home' })" />
+        <img src="/images/logo.png" alt="" class="h-16 cursor-pointer" loading="lazy" @click="router.replace({ name: 'Home' })" />
         <div class="flex items-center space-x-4">
           <!-- <BaseSelect
             v-model.trim="search"
@@ -34,22 +34,22 @@
           <ElPopover
             class="box-item"
             placement="bottom"
-            :width="400"
+            :width="600"
             trigger="click"
             trigger-keys="['Enter']"
             :popper-style="{ color: '#000', borderRadius: '8px', padding: 0 }"
           >
             <template #reference>
-              <BaseInput v-model="search" showIcon class="w-[400px]" placeholder="Tìm kiếm" @change="handleSearch" />
+              <BaseInput v-model="search" showIcon class="w-[600px]" placeholder="Tìm kiếm" @change="handleSearch" />
             </template>
             <div v-for="item in listSuggest" :key="item">
               <p v-html="item" class="cursor-pointer px-4 py-2 hover:font-bold" @click="clickSearch(item)"></p>
             </div>
           </ElPopover>
 
-          <div class="ml-10 flex cursor-pointer items-center justify-center space-x-2">
-            <BaseIcon name="support" size="24" />
-            <span class="text-xs font-bold">Trung tâm hỗ trợ</span>
+          <div class="ml-10 flex w-10 cursor-pointer items-center justify-center space-x-2">
+            <!-- <BaseIcon name="support" size="24" />
+            <span class="text-xs font-bold">Trung tâm hỗ trợ</span> -->
           </div>
           <div class="flex cursor-pointer items-center justify-center space-x-2" @click="router.push({ name: 'Blogs' })">
             <BaseIcon name="note" size="24" />

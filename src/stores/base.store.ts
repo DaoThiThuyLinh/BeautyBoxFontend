@@ -33,7 +33,6 @@ export const useBaseStore = defineStore('base', () => {
   const isGetCarts = ref(false)
   const queryProduct = ref<IParamsProduct>({
     ...DEFAULT_QUERY_PAGINATION,
-    pageSize: 20,
     value: '',
     category: '',
     brand: '',

@@ -69,9 +69,10 @@
     value: '',
     category: '',
     brand: '',
-    orderBy: '',
+    orderBy: '1',
     minPrice: '',
-    maxPrice: ''
+    maxPrice: '',
+    sortDirection: 'desc'
   })
   const isDeleteProduct = ref(false)
   const price = ref('')
